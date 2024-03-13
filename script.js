@@ -123,47 +123,42 @@ let result = ""
         check.forEach(()=>{
             if (uppercase == 1)  {
                 character += upperCaseSymbols
-                // console.log(character)
+                console.log(character)
 
             }  else {
                 if (uppercase == 0 && character.includes(upperCaseSymbols)) {
                     character -= upperCaseSymbols
-                    // console.log(character)
-                    console.log(uppercase)
+                    console.log(character)
                 } 
             }
             
             if (lowercase == 1)  {
                 character += lowerCaseSymbols
-                // console.log(character)
+                console.log(character)
             }  else {
                 if (lowercase == 0 && character.includes(lowerCaseSymbols))  {
                     character -= lowerCaseSymbols
-                    // console.log(character)
-                    console.log(lowercase)
+                    console.log(character)
                 }
             }
 
             if (numbers == 1)  {
                 character += numberSymbols
-                // console.log(character)
             } else {
                 if (numbers == 0 && character.includes(numberSymbols))  {
                     character -= numberSymbols
-                    // console.log(character)
-                    console.log(numbers)
+                    console.log(character)
                 }
             }
            
 
             if (symbols == 1)  {
                 character += symbolSymbols
-                // console.log(character)
+                console.log(character)
             } else {
                 if (symbols == 0 && character.includes(symbolSymbols))  {
                     character -= symbolSymbols
                     console.log(character)
-                    console.log(symbols)
                 } else console.log("no")
             } 
     
