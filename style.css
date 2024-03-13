@@ -45,9 +45,9 @@ h3 {
 }
 
 .input-pass {
-    width: 170px;
+    width: 250px;
     height: 32px;
-    font-size: 24px;
+    font-size: 18px;
     text-align: left;
     background-color: #24232c;
     color: #e6e5ea;
@@ -122,7 +122,7 @@ svg :hover {
     color: #817d92;
 }
 
-.check-uppercase, .check-lowercase, .check-number, .check-symbol {
+#check-uppercase, #check-lowercase, #check-number, #check-symbol {
     width: 20px;
     height: 20px;
     color: #18171f;
@@ -256,8 +256,12 @@ svg :hover {
 
     .input-field {
         width: 540px; 
-        padding: 17px 24px 33px;
     } 
+
+    .input-pass {
+        width: 300px;
+        font-size: 24px;
+    }
 
     .check-box {
         gap: 22px;

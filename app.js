@@ -3,11 +3,10 @@ let bodyColor = document.getElementsByTagName("body")[0]
 let password = document.getElementsByClassName("input-pass")[0]
 let slider = document.getElementsByClassName("character-liner")[0]
 let lengthValue = document.getElementsByClassName("length-value")[0]
-let check = Array.from(document.getElementsByClassName("check"))
-let checkUpperCase = document.getElementById("check-uppercase")
-let checkLowerCase = document.getElementById("check-lowercase")
-let checkNumbercase = document.getElementById("check-number")
-let checkSymbolcase = document.getElementById("check-symbol")
+let checkUpperCase = document.getElementsByClassName("check-uppercase")[0]
+let checkLowerCase = document.getElementsByClassName("check-lowercase")[0]
+let checkNumbercase = document.getElementsByClassName("check-number")[0]
+let checkSymbolcase = document.getElementsByClassName("check-symbol")[0]
 let strenghtResult = document.getElementsByClassName("strenght-result")[0]
 let generate = document.getElementsByClassName("generate")[0]
 
@@ -20,7 +19,6 @@ slider.addEventListener("input", ()=>{
     generated()
 })
 
-let checkCount = 0
 let uppercase = 0
 let lowercase = 0
 let numbers = 0
@@ -29,10 +27,8 @@ let symbols = 0
 checkUpperCase.addEventListener ("click", ()=>{
     if (uppercase == 0) {
     uppercase = 1
-    checkCount += 1
     } else {
         uppercase = 0 
-        checkCount -= 1
     }
     generated()
 })
@@ -40,10 +36,8 @@ checkUpperCase.addEventListener ("click", ()=>{
 checkLowerCase.addEventListener ("click", ()=>{
     if (lowercase == 0) {
         lowercase = 1
-        checkCount += 1
     } else {
         lowercase = 0 
-        checkCount -= 1
     }
     generated()
 })
@@ -51,10 +45,8 @@ checkLowerCase.addEventListener ("click", ()=>{
 checkNumbercase.addEventListener ("click", ()=>{
     if (numbers == 0) {
         numbers = 1
-        checkCount += 1
     } else {
         numbers = 0 
-        checkCount -= 1
     }
     generated()
 })
@@ -62,10 +54,8 @@ checkNumbercase.addEventListener ("click", ()=>{
 checkSymbolcase.addEventListener ("click", ()=>{
     if (symbols == 0) {
         symbols = 1
-        checkCount += 1
     } else {
         symbols = 0 
-        checkCount -= 1
     }
     generated()
 })
@@ -73,35 +63,41 @@ checkSymbolcase.addEventListener ("click", ()=>{
 
 
 function generated () {
-check.forEach(() => {
-    
-});
-    if (checkCount == 1) {
+
+    if (uppercase == 1 && slider.value > 0 && slider.value <= 5) {
         strenghtResult.style.display = "block"
         strenghtResult.innerText = "TOO WEAK!"
         bodyColor.classList.add("tooWeak")
         bodyColor.classList.remove("weak", "medium", "strong")
+        character = upperCaseSymbols
+        random(slider.value)
     } else {
 
-    if (checkCount == 2) {
+    if (uppercase == 1 && lowercase == 1 && /*slider.value > 5 &&*/ slider.value <= 10) {
         strenghtResult.style.display = "block"
         strenghtResult.innerText = "WEAK!"
         bodyColor.classList.add("weak")
         bodyColor.classList.remove("tooWeak", "medium", "strong")
+        character = upperCaseSymbols + lowerCaseSymbols
+        random(slider.value)
     } else {
 
-    if (checkCount == 3) {
+    if (uppercase == 1 && lowercase == 1 && numbers == 1 && slider.value > 10 && slider.value <= 15) {
         strenghtResult.style.display = "block"
         strenghtResult.innerText = "MEDIUM"
         bodyColor.classList.add("medium")
         bodyColor.classList.remove("weak", "tooWeak", "strong")
+        character = upperCaseSymbols + lowerCaseSymbols + numberSymbols
+        random(slider.value)
     }  else {
 
-    if (checkCount == 4) {
+    if (uppercase == 1 && lowercase == 1 && numbers == 1 && symbols == 1 && slider.value > 15 && slider.value <= 20) {
         strenghtResult.style.display = "block"
         strenghtResult.innerText = "STRONG"
         bodyColor.classList.add("strong")
         bodyColor.classList.remove("weak", "tooWeak", "medium")
+        character = upperCaseSymbols + lowerCaseSymbols + numberSymbols + symbolSymbols
+        random(slider.value)
     } else {
         bodyColor.classList.remove("weak", "tooWeak", "medium", "strong")
       
@@ -113,82 +109,38 @@ check.forEach(() => {
 
 
     
- let character = ""  
+    
 let result = ""
-    function random (length){ 
+    function random (length){        
         
-        check.forEach(()=>{
-            if (checkCount > 0 && uppercase == 1)  {
-                character += upperCaseSymbols
-                console.log(character)
-
-            }  else {
-                if (checkCount > 0 && uppercase == 0) {
-                    character -= upperCaseSymbols
-                    console.log(character)
-                    console.log(uppercase)
-                } 
-            }
-            
-            if (checkCount > 0 && lowercase == 1)  {
-                character += lowerCaseSymbols
-                console.log(character)
-            }  else {
-                if (checkCount > 0 && lowercase == 0)  {
-                    character -= lowerCaseSymbols
-                    console.log(character)
-                    console.log(lowercase)
-                }
-            }
-
-            if (checkCount > 0 && numbers == 1)  {
-                character += numberSymbols
-                console.log(character)
-            } else {
-                if (checkCount > 0 && numbers == 0)  {
-                    character -= numberSymbols
-                    console.log(character)
-                    console.log(numbers)
-                }
-            }
-           
-
-            if (checkCount > 0 && symbols == 1)  {
-                character += symbolSymbols
-                console.log(character)
-            } else {
-                if (checkCount > 0 && symbols == 0)  {
-                    character -= symbolSymbols
-                    console.log(character)
-                    console.log(symbols)
-                } 
-            }
-
-             
-
-            
-            
-           
-
-           
-        
-          
-    });  
-
-    result = ""
-    let characterlength = character.length
+        let characterlength = character.length
         if (result == ""){
             for (i=1; i<=length; i++) {
             result += character.charAt(Math.floor(Math.random() * characterlength))
-            } 
-        } 
-    } 
-       
-    
+}    
+        } else result = ""
+            
+    }
     generate.addEventListener("click", () =>{
-        random(slider.value)
-            password.innerText = result
         
+        
+        if (password.innerText == ""){
+            console.log("yes")
+            password.innerText = result
+        console.log(result)
+        console.log(password.innerText)
+        } else {
+            password.innerText = ""
+            console.log("no")
+            result = ""
+            console.log(password.innerText)
+            console.log(result)
+            
+            
+        }
+        // console.log("result")
+        random(slider.value)
+        console.log(slider.value)
     })
 
       
@@ -196,6 +148,7 @@ upperCaseSymbols = `ABCDEFGHIJKLMNOPQRSTUVWXYZ`
 lowerCaseSymbols = `abcdefghijklmnopqrstuvwxyz`
 numberSymbols = `0123456789`
 symbolSymbols = `~!@#$%^&*()_-+={[}]|\:;"'<,>.?/`
+// character = upperCaseSymbols + lowerCaseSymbols + numberSymbols + symbolSymbols
 
 
 
