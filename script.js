@@ -1,6 +1,7 @@
 
 let bodyColor = document.getElementsByTagName("body")[0]
 let password = document.getElementsByClassName("input-pass")[0]
+let copy = document.getElementsByClassName("copy")[0]
 let slider = document.getElementsByClassName("character-liner")[0]
 let lengthValue = document.getElementsByClassName("length-value")[0]
 let check = Array.from(document.getElementsByClassName("check"))
@@ -19,6 +20,8 @@ slider.addEventListener("input", ()=>{
     slider.style.background = `linear-gradient(to right, #a4ffaf ${slider.value/max*100}%, #18171f ${slider.value/max*100}% 100%)`;
     generated()
 })
+
+
 
 let checkCount = 0
 let uppercase = 0
@@ -118,61 +121,52 @@ let result = ""
     function random (length){ 
         
         check.forEach(()=>{
-            if (checkCount > 0 && uppercase == 1)  {
+            if (uppercase == 1)  {
                 character += upperCaseSymbols
-                console.log(character)
+                // console.log(character)
 
             }  else {
-                if (checkCount > 0 && uppercase == 0) {
+                if (uppercase == 0 && character.includes(upperCaseSymbols)) {
                     character -= upperCaseSymbols
-                    console.log(character)
+                    // console.log(character)
                     console.log(uppercase)
                 } 
             }
             
-            if (checkCount > 0 && lowercase == 1)  {
+            if (lowercase == 1)  {
                 character += lowerCaseSymbols
-                console.log(character)
+                // console.log(character)
             }  else {
-                if (checkCount > 0 && lowercase == 0)  {
+                if (lowercase == 0 && character.includes(lowerCaseSymbols))  {
                     character -= lowerCaseSymbols
-                    console.log(character)
+                    // console.log(character)
                     console.log(lowercase)
                 }
             }
 
-            if (checkCount > 0 && numbers == 1)  {
+            if (numbers == 1)  {
                 character += numberSymbols
-                console.log(character)
+                // console.log(character)
             } else {
-                if (checkCount > 0 && numbers == 0)  {
+                if (numbers == 0 && character.includes(numberSymbols))  {
                     character -= numberSymbols
-                    console.log(character)
+                    // console.log(character)
                     console.log(numbers)
                 }
             }
            
 
-            if (checkCount > 0 && symbols == 1)  {
+            if (symbols == 1)  {
                 character += symbolSymbols
-                console.log(character)
+                // console.log(character)
             } else {
-                if (checkCount > 0 && symbols == 0)  {
+                if (symbols == 0 && character.includes(symbolSymbols))  {
                     character -= symbolSymbols
                     console.log(character)
                     console.log(symbols)
-                } 
-            }
-
-             
-
-            
-            
-           
-
-           
-        
-          
+                } else console.log("no")
+            } 
+    
     });  
 
     result = ""
@@ -186,8 +180,10 @@ let result = ""
        
     
     generate.addEventListener("click", () =>{
+        if (checkCount > 0){
         random(slider.value)
-            password.innerText = result
+        password.value = result
+        } else password.value = ""
         
     })
 
@@ -198,6 +194,11 @@ numberSymbols = `0123456789`
 symbolSymbols = `~!@#$%^&*()_-+={[}]|\:;"'<,>.?/`
 
 
+
+copy.addEventListener("click", ()=>{
+    // password.select()
+    navigator.clipboard.writeText(password.value)
+})
 
 
 
