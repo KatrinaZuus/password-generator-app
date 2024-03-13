@@ -119,26 +119,25 @@ check.forEach(() => {
  let character = ""  
 let result = ""
     function random (length){ 
-        
-        check.forEach(()=>{
+
+    let character = ""   
+    
+
+       
             if (uppercase == 1)  {
                 character += upperCaseSymbols
-                console.log(character)
 
             }  else {
                 if (uppercase == 0 && character.includes(upperCaseSymbols)) {
                     character -= upperCaseSymbols
-                    console.log(character)
                 } 
             }
             
             if (lowercase == 1)  {
                 character += lowerCaseSymbols
-                console.log(character)
             }  else {
                 if (lowercase == 0 && character.includes(lowerCaseSymbols))  {
                     character -= lowerCaseSymbols
-                    console.log(character)
                 }
             }
 
@@ -147,22 +146,19 @@ let result = ""
             } else {
                 if (numbers == 0 && character.includes(numberSymbols))  {
                     character -= numberSymbols
-                    console.log(character)
                 }
             }
            
 
             if (symbols == 1)  {
                 character += symbolSymbols
-                console.log(character)
             } else {
                 if (symbols == 0 && character.includes(symbolSymbols))  {
                     character -= symbolSymbols
-                    console.log(character)
-                } else console.log("no")
+                } 
             } 
     
-    });  
+   
 
     result = ""
     let characterlength = character.length
